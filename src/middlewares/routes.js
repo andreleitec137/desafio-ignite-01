@@ -7,6 +7,7 @@ import { UpdateTask } from '../useCases/update-task.js';
 import { GetTaskById } from '../useCases/get-task-by-id.js';
 import { DeleteTask } from '../useCases/delete-task.js';
 import { CompleteTask } from '../useCases/complete-task.js';
+import { CreateMultipleTask } from '../useCases/create-multiple-task.js';
 
 const database = new Database();
 
@@ -35,6 +36,17 @@ export const routes = [
             const createTask = new CreateTask(database)
             
             createTask.execute({ title, description })
+           
+            return res.writeHead(201).end();
+        }
+    },
+    {
+        method: 'POST',
+        path: buildRoutePath('/multiple-tasks'),
+        handler: (req, res) => {            
+            const createMultipleTask = new CreateMultipleTask(database)
+            
+            createMultipleTask.execute();
            
             return res.writeHead(201).end();
         }
