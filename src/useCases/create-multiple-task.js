@@ -13,7 +13,7 @@ export class CreateMultipleTask {
     async execute(){
      
         let count = 0;
-        process.stdout.write('Reading CSV\n');
+        process.stdout.write('Iniciando leitura do CSV\n');
       
         const filePath = new URL('../tasks.csv', import.meta.url);
         
@@ -25,7 +25,7 @@ export class CreateMultipleTask {
           console.log('Not Found', error)
         })
 
-        process.stdout.write('start\n');
+        process.stdout.write('Iniciando processo de importação\n');
         let isFirstLine = true;
 
         for await (const record of this.#file) {
